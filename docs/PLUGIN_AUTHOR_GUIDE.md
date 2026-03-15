@@ -17,12 +17,8 @@ For the current manual signing flow used by this repo, see:
 
 1. A Rust/WASM plugin project that builds to a `.wasm` file.
 2. A clone of `agentichighway/kelvinclaw` (for signing/install scripts).
-3. For AgenticHighway first-party publishing: AWS CLI access to the private
-   `REDACTED_INTERNAL_REPO` KMS keys. The default path is this repo's GitHub Actions OIDC
-   workflow on Blacksmith; `AWS_PROFILE=REDACTED_AWS_PROFILE` remains the local
-   fallback.
-4. For community publishing: an Ed25519 keypair for plugin signing.
-5. `openssl`, `jq`, and `tar`.
+3. An Ed25519 keypair for plugin signing.
+4. `openssl`, `jq`, and `tar`.
 
 ## Choose Runtime Type
 
@@ -78,19 +74,7 @@ Set `entrypoint_sha256` in `plugin.json` to the SHA-256 of the `.wasm` entrypoin
 
 ## Sign Manifest
 
-Use the KelvinClaw signing script:
-
-```bash
-cd /path/to/kelvinclaw
-AWS_PROFILE=REDACTED_AWS_PROFILE scripts/plugin-sign.sh \
-  --manifest /tmp/my-plugin/plugin.json \
-  --kms-key-id REDACTED_KMS_ALIAS \
-  --kms-region us-east-1 \
-  --publisher-id kelvin_firstparty_aws_v1 \
-  --trust-policy-out /tmp/kelvin_firstparty_aws_v1.trust.json
-```
-
-Community publishers can continue using local PEM signing:
+Use the KelvinClaw signing script with your Ed25519 private key:
 
 ```bash
 cd /path/to/kelvinclaw
@@ -104,9 +88,7 @@ scripts/plugin-sign.sh \
 This generates `plugin.sig` for distribution and a trust-policy snippet.
 
 Do not commit private keys into either repository. Commit only the matching
-public key in `trusted_publishers.kelvin.json`. For AgenticHighway first-party
-releases, the public key should be exported from KMS, not derived from an
-ad-hoc local private key.
+public key in `trusted_publishers.kelvin.json`.
 
 ## Create Distribution Tarball
 
@@ -122,12 +104,12 @@ Compute package SHA-256 and record it for `index.json`.
 ## Publish to This Repo
 
 1. Add tarball:
-   - `packages/your.plugin.id/1.0.0/your.plugin.id-1.0.0.tar.gz`
+    - `packages/your.plugin.id/1.0.0/your.plugin.id-1.0.0.tar.gz`
 2. Add/merge publisher key in `trusted_publishers.kelvin.json`.
 3. Add entry to `index.json` with:
-   - `id`, `version`, `package_url`, `sha256`
-   - optional `trust_policy_url` (recommended)
-   - optional `quality_tier` and `tags` (recommended)
+    - `id`, `version`, `package_url`, `sha256`
+    - optional `trust_policy_url` (recommended)
+    - optional `quality_tier` and `tags` (recommended)
 
 Index entry template:
 

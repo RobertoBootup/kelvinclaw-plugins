@@ -26,10 +26,9 @@ Use this guide first:
 - [docs/PLUGIN_AUTHOR_GUIDE.md](docs/PLUGIN_AUTHOR_GUIDE.md)
 - [docs/LOCAL_SIGNING_AND_PUBLISHING.md](docs/LOCAL_SIGNING_AND_PUBLISHING.md)
 
-AgenticHighway first-party releases now target AWS KMS-backed Ed25519 signing via
-the private `REDACTED_INTERNAL_REPO` repo. The default release path is GitHub Actions OIDC on
-Blacksmith runners, with local `AWS_PROFILE=REDACTED_AWS_PROFILE` signing kept as the
-manual fallback. Community publishers can continue using local PEM signing.
+All plugins are signed with Ed25519 keys. AgenticHighway first-party releases
+are signed via CI. Community publishers use the PEM-based signing flow
+documented in the guides above.
 
 For local community development, use the public authoring flow in the
 `kelvinclaw` repo first. Unsigned local plugins are supported there and Kelvin
