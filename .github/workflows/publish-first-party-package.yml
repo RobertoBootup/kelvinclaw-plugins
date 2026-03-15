@@ -38,8 +38,8 @@ jobs:
     timeout-minutes: 20
     env:
       AWS_REGION: us-east-1
-      AWS_ROLE_ARN: arn:aws:iam::REDACTED_ACCOUNT_ID:role/REDACTED_ROLE_NAME
-      KMS_KEY_ID: REDACTED_KMS_ALIAS
+      AWS_ROLE_ARN: ${{ vars.AWS_ROLE_ARN }}
+      KMS_KEY_ID: ${{ vars.KMS_KEY_ID }}
       PUBLISHER_ID: kelvin_firstparty_aws_v1
     steps:
       - name: Checkout
