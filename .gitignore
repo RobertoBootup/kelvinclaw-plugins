@@ -1,0 +1,32 @@
+# Build output
+dist/
+
+# Local signing key material (never commit private keys or intermediate key files)
+*.pem
+*.der
+*.key
+*.p8
+
+# Local environment overrides
+.env
+.env.local
+
+# Scratch / temp extraction directories
+scratch/
+tmp/
+.tmp/
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# macOS
+.DS_Store
+.AppleDouble
+
+# Windows
+Thumbs.db
+desktop.ini

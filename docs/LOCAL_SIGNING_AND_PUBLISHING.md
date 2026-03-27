@@ -70,15 +70,17 @@ shasum -a 256 your.plugin.id-1.0.0.tar.gz
 
 ## Validate
 
-Offline repository validation:
+Offline repository validation (from this repo):
 
 ```bash
 scripts/validate-repository.sh
 ```
 
-From a local KelvinClaw clone:
+From a KelvinClaw release bundle:
 
 ```bash
-scripts/plugin-index-install.sh --index-url <index-url> --plugin <plugin-id>
-scripts/plugin-list.sh --json
+export KELVIN_PLUGIN_INDEX_URL=<index-url>
+
+./kpm install <plugin-id>
+./kpm list
 ```
