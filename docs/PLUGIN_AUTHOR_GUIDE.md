@@ -33,9 +33,9 @@ For new model plugins, prefer host-routed manifests:
 
 Canonical runtime/capability rules:
 
-- https://github.com/agentichighway/kelvinclaw/blob/main/docs/PLUGIN_INSTALL_FLOW.md
-- https://github.com/agentichighway/kelvinclaw/blob/main/docs/model-plugin-abi.md
-- https://github.com/agentichighway/kelvinclaw/blob/main/docs/build-a-model-plugin.md
+- https://github.com/agentichighway/kelvinclaw/blob/main/docs/plugins/plugin-install-flow.md
+- https://github.com/agentichighway/kelvinclaw/blob/main/docs/plugins/model-plugin-abi.md
+- https://github.com/agentichighway/kelvinclaw/blob/main/docs/plugins/build-a-model-plugin.md
 
 ## Package Layout
 
@@ -117,14 +117,19 @@ Index entry template:
 
 ## Validate Before PR
 
-From a KelvinClaw clone:
+From a KelvinClaw release bundle with `KELVIN_PLUGIN_INDEX_URL` set to your index:
 
 ```bash
-# install from your index entry
-scripts/plugin-index-install.sh --index-url <index-url> --plugin your.plugin.id
+export KELVIN_PLUGIN_INDEX_URL=<index-url>
 
-# list installed plugin
-scripts/plugin-list.sh --json
+./kpm install your.plugin.id
+./kpm list
+```
+
+Or directly via the install script in the bundle:
+
+```bash
+share/scripts/plugin-index-install.sh --index-url <index-url> --plugin your.plugin.id
 ```
 
 Recommended checks:

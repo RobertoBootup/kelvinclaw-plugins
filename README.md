@@ -8,17 +8,6 @@ This repo is intentionally focused on publish/install artifacts, not plugin sour
 - `packages/<plugin_id>/<version>/<plugin_id>-<version>.tar.gz`
 - `trusted_publishers.kelvin.json` (publisher trust policy)
 
-Currently published first-party packages:
-
-- `kelvin.cli`
-- `kelvin.anthropic`
-- `kelvin.openai`
-- `kelvin.openrouter`
-
-Upstream plugin ids that are documented in the main repo but not yet published here:
-
-- `kelvin.browser.automation`
-
 ## For Plugin Developers
 
 Use this guide first:
@@ -52,17 +41,23 @@ Templates:
 
 This repo does not duplicate SDK/runtime specification docs. Canonical references:
 
-- [KelvinClaw: Plugin Install Flow](https://github.com/agentichighway/kelvinclaw/blob/main/docs/PLUGIN_INSTALL_FLOW.md)
-- [KelvinClaw: Model Plugin ABI](https://github.com/agentichighway/kelvinclaw/blob/main/docs/model-plugin-abi.md)
-- [KelvinClaw: Plugin Index Schema](https://github.com/agentichighway/kelvinclaw/blob/main/docs/plugin-index-schema.md)
-- [KelvinClaw: Trusted Executive + WASM](https://github.com/agentichighway/kelvinclaw/blob/main/docs/trusted-executive-wasm.md)
+- [KelvinClaw: Plugin Install Flow](https://github.com/agentichighway/kelvinclaw/blob/main/docs/plugins/plugin-install-flow.md)
+- [KelvinClaw: Model Plugin ABI](https://github.com/agentichighway/kelvinclaw/blob/main/docs/plugins/model-plugin-abi.md)
+- [KelvinClaw: Plugin Index Schema](https://github.com/agentichighway/kelvinclaw/blob/main/docs/plugins/plugin-index-schema.md)
+- [KelvinClaw: Trusted Executive + WASM](https://github.com/agentichighway/kelvinclaw/blob/main/docs/architecture/trusted-executive-wasm.md)
 
-## Installers That Consume This Repo
+## Installing Plugins From This Repo
 
-- `scripts/install-kelvin-cli-plugin.sh`
-- `scripts/install-kelvin-openai-plugin.sh`
-- `scripts/install-kelvin-anthropic-plugin.sh`
-- `scripts/install-kelvin-browser-plugin.sh`
-- `scripts/plugin-index-install.sh`
+Set `KELVIN_PLUGIN_INDEX_URL` to this repo's raw index URL, then use `kpm` from a KelvinClaw release bundle:
 
-All are in the KelvinClaw repository.
+```bash
+export KELVIN_PLUGIN_INDEX_URL=https://raw.githubusercontent.com/agentichighway/kelvinclaw-plugins/main/index.json
+
+./kpm search                       # list available plugins
+./kpm install kelvin.anthropic     # install a plugin
+./kpm install kelvin.cli           # install a specific plugin
+./kpm list                         # list installed plugins
+./kpm update                       # update all installed plugins
+```
+
+The underlying install script (`share/scripts/plugin-index-install.sh`) is also available directly in KelvinClaw release bundles for scripted or CI use.
