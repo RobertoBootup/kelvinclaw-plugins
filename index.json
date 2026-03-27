@@ -156,6 +156,34 @@
       "tags": ["first_party", "model", "openrouter"]
     },
     {
+      "id": "kelvin.echo",
+      "name": "Kelvin Echo Model Plugin",
+      "version": "0.2.0",
+      "description": "First-party echo plugin — reflects the user prompt back as the assistant response. No external network calls.",
+      "homepage": "https://github.com/agentichighway/kelvinclaw/tree/main/plugins/kelvin-echo-plugin",
+      "capabilities": ["model_provider"],
+      "runtime": "wasm_model_v1",
+      "package_url": "https://raw.githubusercontent.com/agentichighway/kelvinclaw-plugins/main/packages/kelvin.echo/0.2.0/kelvin.echo-0.2.0.tar.gz",
+      "sha256": "9d4f73d99e4595148111895a97a9f24a32e836af7e9cd63b0cea9dcb8b9520fa",
+      "trust_policy_url": "https://raw.githubusercontent.com/agentichighway/kelvinclaw-plugins/main/trusted_publishers.kelvin.json",
+      "quality_tier": "signed_trusted",
+      "tags": ["first_party", "model", "echo"]
+    },
+    {
+      "id": "kelvin.websearch",
+      "name": "Kelvin Web Search",
+      "version": "0.2.0",
+      "description": "Web search powered by the Brave Search API",
+      "homepage": "https://github.com/agentichighway/kelvinclaw/tree/main/plugins/kelvin-websearch-plugin",
+      "capabilities": ["tool_provider", "network_egress", "env_access"],
+      "runtime": "wasm_tool_v1",
+      "package_url": "https://raw.githubusercontent.com/agentichighway/kelvinclaw-plugins/main/packages/kelvin.websearch/0.2.0/kelvin.websearch-0.2.0.tar.gz",
+      "sha256": "50437544e38abaf81448f9acde6c0d2305021618086797ae67eed17748b01264",
+      "trust_policy_url": "https://raw.githubusercontent.com/agentichighway/kelvinclaw-plugins/main/trusted_publishers.kelvin.json",
+      "quality_tier": "signed_trusted",
+      "tags": ["first_party", "tool", "websearch"]
+    },
+    {
       "id": "kelvin.openrouter",
       "name": "Kelvin OpenRouter Model Plugin",
       "version": "0.2.0",
